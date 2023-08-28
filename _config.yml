@@ -1,8 +1,8 @@
 # Site settings
 title: CSCI 5535 & ECEN 5533 Fall 2021
 subtitle: Fundamentals of Programming Languages
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://csci5535.github.io" # the base hostname & protocol for your site
+baseurl: "/f21/" # the subpath of your site, e.g. /blog/
+url: "https://csci5535.cs.colorado.edu" # the base hostname & protocol for your site
 syllabus: ""
 githubdir: "csci5535"
 
