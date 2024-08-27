@@ -58,26 +58,28 @@ schedule](schedule) to know what else is in store.
 ## Classroom and Office Hours
 
 * **Instructor:** [Gowtham Kaki](http://gowthamk.github.io).
-* **Where:** [CLRE211](https://www.colorado.edu/map?id=336#!m/193824)
+* **Where:** [CLRE 211](https://www.colorado.edu/map?id=336#!m/193824)
 * **When:** T,Th 5:00 pm - 6:15 pm
 * **Zoom:** <https://cuboulder.zoom.us/j/98021030606>. Passcode is CU
   Boulder ZIP code (one that ends in 9).
-* **Office Hours**: On [Piazza](https://piazza.com/colorado/fall2021/csci5535) or by appointment.
-* **Canvas:** <https://canvas.colorado.edu/courses/77068>
+* **Office Hours**: On [Piazza](https://piazza.com/class/m0cr5hdnzgp3t9) or by appointment.
+* **Canvas:** TBD
 
 ## Textbook
 
 * We are largely going to use [Volume 1](https://softwarefoundations.cis.upenn.edu/lf-current/index.html) (Logical Foundations) and [Volume 2](https://softwarefoundations.cis.upenn.edu/plf-current/index.html)
-  (Programming Language Foundations) of Pierce et al's [Software Foundations](https://softwarefoundations.cis.upenn.edu/) course notes.
-* We will also cover Lean [Certified Programming With Dependent
-  Types](http://adam.chlipala.net/cpdt/) occasionally.
+  (Programming Language Foundations) of Pierce et al's [Software Foundations](https://softwarefoundations.cis.upenn.edu/) course notes. The language/tool for this book is Coq.
+* We will also cover parts of [The Hitchhiker’s Guide to Logical
+Verification](https://raw.githubusercontent.com/blanchette/logical_verification_2023/main/hitchhikers_guide.pdf). The language/tool for this book is Lean.
 * Pierce's [Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/) is a recommended reading. This book is available for checkout at [CU Libraries](https://ebookcentral.proquest.com/lib/ucb/detail.action?docID=3338823).
+* Heather Macbeth's [The Mechanics of Proof](https://hrmacbeth.github.io/math2001/) is another recommended reading.
 
 ## Evaluation Components
 
 | Item                |    Nos.  | Weight (%) |
 |---------------------|----------|--------------:|
-| Homeworks           |  8 of 10 |     40        |
-| Mid-term            |     1    |     20        |
-| Course Project      |     1    |     20        |
-| Final               |     1    |     20        |
+| Homeworks           |  6 of 8  |     48        |
+| Class Participation |     -    |      2        |
+| Mid-term            |     1    |     10        |
+| Course Project      |     1    |     25        |
+| Final               |     1    |     15        |
