@@ -78,7 +78,7 @@ Verification](https://raw.githubusercontent.com/blanchette/logical_verification_
 
 | Item                |    Nos.  | Weight (%) |
 |---------------------|----------|--------------:|
-| Homeworks           |  6 of 8  |     48        |
+| Homeworks           |     6    |     48        |
 | Class Participation |     -    |      2        |
 | Mid-term            |     1    |     10        |
 | Course Project      |     1    |     25        |
