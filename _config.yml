@@ -1,7 +1,7 @@
 # Site settings
 title: CSCI 5535 & ECEN 5533 Fall 2021
 subtitle: Fundamentals of Programming Languages
-baseurl: "/f21/" # the subpath of your site, e.g. /blog/
+baseurl: "/f24/" # the subpath of your site, e.g. /blog/
 url: "https://csci5535.cs.colorado.edu" # the base hostname & protocol for your site
 syllabus: ""
 githubdir: "csci5535"
@@ -12,7 +12,7 @@ twitter_username: gowthamk
 github_username:  gowthamk
 authorurl: "https://gowthamk.github.io"
 address: |
-    ECCS 121D,
+    ECCS 121A,
     University of Colorado,
     Boulder, CO 80309
 

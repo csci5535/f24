@@ -9,7 +9,7 @@ layout: default
 </div>
 
 
-Welcome to CSCI 5535 Fall 2021 edition! The objective of this course is to
+Welcome to CSCI 5535 Fall 2024 edition! The objective of this course is to
 study the mathematical foundations of computer programs and programming
 languages. To understand what we mean by "mathematical foundations", let's
 think back to a familiar concept from high school mathematics. Recall that
@@ -58,10 +58,10 @@ schedule](schedule) to know what else is in store.
 ## Classroom and Office Hours
 
 * **Instructor:** [Gowtham Kaki](http://gowthamk.github.io).
-* **Where:** ECCS 1B14 
-* **When:** M,W,F 3:00 - 3:50 PM
-* **Zoom:** <https://cuboulder.zoom.us/j/95381898612>. Email me for the
-  passcode.
+* **Where:** [CLRE211](https://www.colorado.edu/map?id=336#!m/193824)
+* **When:** T,Th 5:00 pm - 6:15 pm
+* **Zoom:** <https://cuboulder.zoom.us/j/98021030606>. Passcode is CU
+  Boulder ZIP code (one that ends in 9).
 * **Office Hours**: On [Piazza](https://piazza.com/colorado/fall2021/csci5535) or by appointment.
 * **Canvas:** <https://canvas.colorado.edu/courses/77068>
 
@@ -69,7 +69,7 @@ schedule](schedule) to know what else is in store.
 
 * We are largely going to use [Volume 1](https://softwarefoundations.cis.upenn.edu/lf-current/index.html) (Logical Foundations) and [Volume 2](https://softwarefoundations.cis.upenn.edu/plf-current/index.html)
   (Programming Language Foundations) of Pierce et al's [Software Foundations](https://softwarefoundations.cis.upenn.edu/) course notes.
-* We will refer to Chlipala's [Certified Programming With Dependent
+* We will also cover Lean [Certified Programming With Dependent
   Types](http://adam.chlipala.net/cpdt/) occasionally.
 * Pierce's [Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/) is a recommended reading. This book is available for checkout at [CU Libraries](https://ebookcentral.proquest.com/lib/ucb/detail.action?docID=3338823).
 
