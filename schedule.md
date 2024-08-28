@@ -18,7 +18,7 @@ permalink: /schedule/
     <td class="tg-baqh">1</td>
     <td class="tg-0lax">08/23 - 8/27</td>
     <td class="tg-0lax">Introduction, Coq Basics, Functional Programming, Induction & Inductive Data Structures</td>
-    <td class="tg-0lax"><!-- a href="../lectures/intro.pdf">Intro Slides</a --></td>
+    <td class="tg-0lax"><a href="../lectures/intro.pdf">Intro Slides (PDF)</a></td>
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">2</td>
