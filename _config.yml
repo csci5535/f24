@@ -1,5 +1,5 @@
 # Site settings
-title: CSCI 5535 & ECEN 5533 Fall 2021
+title: CSCI 5535 & ECEN 5533 Fall 2024
 subtitle: Fundamentals of Programming Languages
 baseurl: "/f24/" # the subpath of your site, e.g. /blog/
 url: "https://csci5535.cs.colorado.edu" # the base hostname & protocol for your site
