@@ -23,7 +23,7 @@ permalink: /schedule/
         <br />
         <a
         href="https://cuboulder.zoom.us/rec/share/w8URo5UhBNqmVL01C6eVOJ1Rt270nHiWOifXuLRz9yaFpRWtKhcNNG2wcVHQteTW.KEZxjz6Tq4Us3G5Z">Lec 2 Zoom Recording</a>
-    /td>
+    </td>
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">2</td>
