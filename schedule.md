@@ -21,6 +21,9 @@ permalink: /schedule/
         <br />
         <a
         href="https://cuboulder.zoom.us/rec/share/w8URo5UhBNqmVL01C6eVOJ1Rt270nHiWOifXuLRz9yaFpRWtKhcNNG2wcVHQteTW.KEZxjz6Tq4Us3G5Z">Lec 2 Zoom Recording</a>
+        <br />
+        <a
+        href="https://leanprover.github.io/logic_and_proof_lean3/natural_deduction_for_propositional_logic.html">Lec2 Reading</a>
     </td>
   </tr>
   <tr class="lecture">
