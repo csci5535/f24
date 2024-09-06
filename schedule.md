@@ -33,6 +33,7 @@ permalink: /schedule/
         <br />
         <a
         href="https://cuboulder.zoom.us/rec/share/mCa-i5Z5_ItXdG7yezyhQMpWgkkIbD_jnfxLS-xVEvsmDcjKCxK8hVXImnOwPI-v.FdHZTuyYwSyjKYKX">Lec4 Zoom Recording</a>
+        <br />
         <a
         href="https://softwarefoundations.cis.upenn.edu/lf-current/Induction.html">Lec4 Reading</a>
     </td>
