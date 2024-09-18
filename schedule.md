@@ -36,6 +36,12 @@ permalink: /schedule/
         <br />
         <a
         href="https://softwarefoundations.cis.upenn.edu/lf-current/Induction.html">Lec4 Reading</a>
+        <br />
+        <a
+        href="https://cuboulder.zoom.us/rec/share/FBxTRFD90cnxvfoLYm-7S3WbRF3C0g9ISEVV9a_pD_DYn8mov2VqZ0jU-XX_UTKc.8cyvHfSG0p_AxGfw">Lec5 Zoom Recording</a>
+        <br />
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/Lists.html">Lec5 Reading</a>
     </td>
   </tr>
   <tr class="lecture">
