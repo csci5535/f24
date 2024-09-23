@@ -49,7 +49,13 @@ permalink: /schedule/
     <td class="tg-0lax">
       Polymorphism, Higher-Order Functions, Coq Tactics
     </td>
-    <td class="tg-0lax"></td>
+    <td class="tg-0lax">
+        <a
+        href="https://cuboulder.zoom.us/rec/share/kbSOxNlDLsQACvHAoN93Njcgn5GY5tevGLce25RwjsT1SEXrl2Un_CzblaPSQBnL.r2HVJJzVHWJxVYCA">Lec7 Zoom Recording</a>
+        <br />
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/Poly.html">Lec7 Reading</a>
+    </td>
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">3</td>
