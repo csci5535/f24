@@ -42,6 +42,10 @@ permalink: /schedule/
         <br />
         <a
         href="https://softwarefoundations.cis.upenn.edu/lf-current/Lists.html">Lec5 Reading</a>
+        <br />
+        <a
+        href="https://youtu.be/9DPVVuLLx2Q">Lec6 Recording (from
+        archive)</a>
     </td>
   </tr>
   <tr class="lecture">
