@@ -54,7 +54,10 @@ permalink: /schedule/
         href="https://cuboulder.zoom.us/rec/share/kbSOxNlDLsQACvHAoN93Njcgn5GY5tevGLce25RwjsT1SEXrl2Un_CzblaPSQBnL.r2HVJJzVHWJxVYCA">Lec7 Zoom Recording</a>
         <br />
         <a
-        href="https://softwarefoundations.cis.upenn.edu/lf-current/Poly.html">Lec7 Reading</a>
+        href="https://cuboulder.zoom.us/rec/share/keHzqwOpFq_VruQe_Dg2hupWOpagczvgcbqGahcroWPORL_mOIDYNLRV0yrTAO3W.rlf0BifpOTReth34">Lec8 Zoom Recording</a>
+        <br />
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/Poly.html">Lec7 & Lec8 Reading</a>
     </td>
   </tr>
   <tr class="lecture">
