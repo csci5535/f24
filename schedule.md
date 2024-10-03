@@ -7,7 +7,7 @@ permalink: /schedule/
 <table id="schedule">
 <thead>
   <tr>
-    <th class="seqno">Week</th>
+    <th class="seqno">Module</th>
     <th class="topic">Topics</th>
     <th class="reading">Reading</th>
   </tr>
@@ -51,7 +51,7 @@ permalink: /schedule/
   <tr class="lecture">
     <td class="tg-baqh">2</td>
     <td class="tg-0lax">
-      Polymorphism, Higher-Order Functions, Coq Tactics
+      Polymorphism, Higher-Order Functions, Maps, Coq Tactics
     </td>
     <td class="tg-0lax">
         <a
@@ -62,65 +62,56 @@ permalink: /schedule/
         <br />
         <a
         href="https://softwarefoundations.cis.upenn.edu/lf-current/Poly.html">Lec7 & Lec8 Reading</a>
+        <br />
+        <a
+        href="https://www.youtube.com/watch?v=fNKuWqxgSoI&list=PL0RRWhphX_kQZe7h1ABNR0xOhsPJBdYAk">Lec 9 Recording (from archive)</a>
+        <br />
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/Maps.html">Lec 9 Reading</a>
+        <br />
+        <a
+        href="https://cuboulder.zoom.us/rec/share/jvvHll1_hMQTisCXntUdPs08OeySa8KgaBmSni9Cqc1eKdKrqhxsVKnByTUNzxv7.cJ4xJpHXzOPEKHOV">Lec 10 Zoom Recording</a>
+        <br />
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/Tactics.html">Lec 10 Reading</a>
+
     </td>
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">3</td>
-    <td class="tg-0lax">Logic in Coq, Inductive Propositions</td>
+    <td class="tg-0lax">
+        Logic in Coq, Inductive Propositions, Curry-Howard Correspondence</td>
     <td class="tg-0lax"> </td>
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">4</td>
-    <td class="tg-0lax">Inductive Propositions (Contd.), Curry-Howard Correspondence, Maps</td>
-    <td class="tg-0lax"> </td>
-  </tr>
-  <tr class="lecture">
-    <td class="tg-baqh">5</td>
     <td class="tg-0lax">Modeling an Imperative Language (Imp), Operational Semantics</td>
     <td class="tg-0lax"> </td>
   </tr>
   <tr class="lecture">
-    <td class="tg-baqh">6</td>
+    <td class="tg-baqh">5</td>
     <td class="tg-0lax"> Basic Proof Automation, Reasoning about Imp using Hoare Logic </td>
     <td class="tg-0lax"> </td>
   </tr>
   <tr class="lecture">
-    <td class="tg-baqh">7</td>
+    <td class="tg-baqh">6</td>
     <td class="tg-0lax"> Type Systems, Simply Typed Lambda Calculus (STLC)</td>
     <td class="tg-0lax"> </td>
   </tr>
   <tr class="lecture">
-    <td class="tg-baqh">8</td>
-    <td class="tg-0lax"> STLC (Contd.) </td>
-    <td class="tg-0lax"> </td>
-  </tr>
-  <tr class="lecture">
-    <td class="tg-baqh">9</td>
+    <td class="tg-baqh">7</td>
     <td class="tg-0lax"> Properties of STLC, Extensions to STLC</td>
     <td class="tg-0lax"> </td>
   </tr>
   <tr class="lecture">
-    <td class="tg-baqh">10</td>
-    <td class="tg-0lax">Extensions to STLC (Contd.), Sub-Typing</td>
-    <td class="tg-0lax">
-    </td>
-  </tr>
-  <tr class="lecture">
-    <td class="tg-baqh">11</td>
-    <td class="tg-0lax">More Proof Automation, Functional Program
+    <td class="tg-baqh">8</td>
+    <td class="tg-0lax">Proof Automation, Functional Program
     Verification</td>
     <td class="tg-0lax">
     </td>
   </tr>
   <tr class="lecture">
-    <td class="tg-baqh">12</td>
-    <td class="tg-0lax">
-      Functional Program Verification (Contd.)
-    </td>
-    <td class="tg-0lax"></td>
-  </tr>
-  <tr class="lecture">
-    <td class="tg-baqh">13</td>
+    <td class="tg-baqh">9</td>
     <td class="tg-0lax">
       Research Topics
     </td>
