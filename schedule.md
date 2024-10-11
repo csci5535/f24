@@ -81,7 +81,35 @@ permalink: /schedule/
     <td class="tg-baqh">3</td>
     <td class="tg-0lax">
         Logic in Coq, Inductive Propositions, Curry-Howard Correspondence</td>
-    <td class="tg-0lax"> </td>
+    <td class="tg-0lax"> 
+        <a href="../lectures/csci5535-projects.pdf">
+        Course Project Proposals
+        </a>
+        <a
+        href="https://cuboulder.zoom.us/rec/share/qj_igKRuOddsOPFKQqtC26yyhY8_YTghnA6Tx4m37pIDNFCkIA3N5eSVJPDhfOQG.OsvcRJRAX3MSPj_1">
+        Lec 11 Zoom Recording
+        </a>
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/IndProp.html">
+        Lec 11 Reading
+        </a>
+        <a
+        href="https://cuboulder.zoom.us/rec/share/v5z_rnK5x_H9hT1UAlEVkxkFUO2TYElQtwLu5y-bqBr2Zk36yGSTliyafDeejb3Z.0h35UTPOgu7H9w3q">
+        Lec 12 Zoom Recording
+        </a>
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/ProofObjects.html">
+        Lec 12 Reading
+        </a>
+        <a
+        href="https://cuboulder.zoom.us/rec/share/JhyuN0j_7EIQPUzogRwv82-e9fEJ_nhF7H-6fQWYpxObEs3ANXNOTXm1PQ0BNw5j.pBiletfFpXVeuITJ">
+        Lec 13 Zoom Recording
+        </a>
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/Imp.html#lab366">
+        Lec 13 Reading
+        </a>
+    </td>
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">4</td>
