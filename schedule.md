@@ -120,7 +120,12 @@ permalink: /schedule/
   <tr class="lecture">
     <td class="tg-baqh">4</td>
     <td class="tg-0lax">Modeling an Imperative Language (Imp), Operational Semantics</td>
-    <td class="tg-0lax"> </td>
+    <td class="tg-0lax"> 
+        <a
+        href="https://cuboulder.zoom.us/rec/share/eFV50_Ks_OQBEWYmPJo8d0CBlm6LHAtMcdZTG6JbK4qnQLpoKUinMeYc-bT_VGye.Ov6t02E6MsPk1ZsH?startTime=1729032970000">
+        Lec 14 Zoom Recoding
+        </a>
+    </td>
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">5</td>
