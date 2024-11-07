@@ -125,12 +125,32 @@ permalink: /schedule/
         href="https://cuboulder.zoom.us/rec/share/eFV50_Ks_OQBEWYmPJo8d0CBlm6LHAtMcdZTG6JbK4qnQLpoKUinMeYc-bT_VGye.Ov6t02E6MsPk1ZsH?startTime=1729032970000">
         Lec 14 Zoom Recoding
         </a>
+        <br />
+        <a
+        href="https://cuboulder.zoom.us/rec/share/gDDlYlJ46JHBjWZ6ZbPT6qDYHO8umakQiSs8PEM6XiiasuKJpOn1kWUiCHGl0R_k.lXk6fbGtb_Kg6U7F">Lec 15 Zoom Recording</a>
+        <br />
+        <a
+        href="https://cuboulder.zoom.us/rec/share/VwoNTTA7QIQDqh5oLauROiGrrfF8GHKVv0fEwcB6OpURS3-hJuqgEn--KIxyC_TY.P_0gdlQvUZHBehRL">Lec 16 Zoom Recording</a>
+        <br />
+        <a
+        href="https://softwarefoundations.cis.upenn.edu/lf-current/Imp.html">
+        Lec 14-16 Reading
+        </a>
     </td>
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">5</td>
-    <td class="tg-0lax"> Basic Proof Automation, Reasoning about Imp using Hoare Logic </td>
-    <td class="tg-0lax"> </td>
+    <td class="tg-0lax"> Reasoning about Imp using Hoare Logic </td>
+    <td class="tg-0lax"> 
+        <a href="https://cuboulder.zoom.us/rec/share/TKEIgu2KksAVdR_nNAvgqaIHsPTcAh2fOhLDdcu-dXM9Q8dCTqZaN8TE5zJD-F_1.LfKL4lEKpuwTVvub?startTime=1730242671000">Lec 17 Zoom Recording</a>
+        <br />
+        <a href="https://cuboulder.zoom.us/rec/share/6iS9QKoUHIkd3J6ocF_-gP8qwDgqTBkB1Hbqly-l1P6TdKhm0ziFtBPhXKgEgsma.Nghu7WD7CtpTWcPM?startTime=1730415257000">Lec 18 Zoom Recording</a>
+        <br />
+        <a href="https://cuboulder.zoom.us/rec/share/4ZZZOLt4XsrRMW8gicTqaNWpEZajVxxTNNU5TOT-FQ2FrHI5jXzIRaz_VRwcQFRh.FpgpKjT0XiM2cf2u">Lec 19 Zoom Recording</a>
+        <br />
+        <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Hoare.html">Lec 17-19 Reading</a>
+    </td>
+
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">6</td>
