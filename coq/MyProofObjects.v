@@ -1,264 +1,43 @@
+(** * ProofObjects: The Curry-Howard Correspondence *)
+
 Set Warnings "-notation-overridden,-parsing,-deprecated-hint-without-locality".
-From LF Require Export Logic.
-From Coq Require Import Lia.
+From LF Require Export IndProp.
 
-Fixpoint is_even (n:nat) : bool := 
-  match n with
-   | 0 => true
-   | 1 => false
-   | S (S n') => is_even n'  
-  end.
+(** "Algorithms are the computational content of proofs."
+    (Robert Harper) *)
 
+(** We have seen that Coq has mechanisms both for _programming_,
+    using inductive data types like [nat] or [list] and functions over
+    these types, and for _proving_ properties of these programs, using
+    inductive propositions (like [ev]), implication, universal
+    quantification, and the like.  So far, we have mostly treated
+    these mechanisms as if they were quite separate, and for many
+    purposes this is a good way to think.  But we have also seen hints
+    that Coq's programming and proving facilities are closely related.
+    For example, the keyword [Inductive] is used to declare both data
+    types and propositions, and [->] is used both to describe the type
+    of functions on data and logical implication.  This is not just a
+    syntactic accident!  In fact, programs and proofs in Coq are
+    almost the same thing.  In this chapter we will study how this
+    works.
 
-Definition Even1 x := exists n : nat, x = double n.
-Definition Even2 x := is_even x = true.
+    We have already seen the fundamental idea: provability in Coq is
+    represented by concrete _evidence_.  When we construct the proof
+    of a basic proposition, we are actually building a tree of
+    evidence, which can be thought of as a data structure.
 
-(*
+    If the proposition is an implication like [A -> B], then its proof
+    will be an evidence _transformer_: a recipe for converting
+    evidence for A into evidence for B.  So at a fundamental level,
+    proofs are simply programs that manipulate evidence. *)
 
-  ev n : natural number n is even
-   
-    
-    ------  [ev_0]
-     ev 0
+(** Question: If evidence is data, what are propositions themselves?
 
-      ev n
-  -----------  [ev_ss]
-   ev (S (S n))
+    Answer: They are types! *)
 
-*)
-    
-(*   ---- [ev_0]
-      ev 0 
-     -----  [ev_ss] 
-      ev 2
-    -------- [ev_ss]
-      ev 4
-*)
-
-(* ################################################################# *)
-(** * Inductively Defined Propositions *)
-
-(** In the [Logic] chapter, we looked at several ways of writing
-    propositions, including conjunction, disjunction, and existential
-    quantification.  In this chapter, we bring yet another new tool
-    into the mix: _inductively defined propositions_. *)
-
-(** We've already seen two ways of stating a proposition that a number
-    [n] is even: We can say
-
-      (1) [even n = true], or
-
-      (2) [exists k, n = double k].
-
-    A third possibility that we'll explore here is to say that [n] is
-    even if we can _establish_ its evenness from the following rules:
-
-       - Rule [ev_0]: The number [0] is even.
-       - Rule [ev_SS]: If [n] is even, then [S (S n)] is even. *)
-
-(** To illustrate how this new definition of evenness works,
-    let's imagine using it to show that [4] is even. By rule [ev_SS],
-    it suffices to show that [2] is even. This, in turn, is again
-    guaranteed by rule [ev_SS], as long as we can show that [0] is
-    even. But this last fact follows directly from the [ev_0] rule. *)
-
-(** We will see many definitions like this one during the rest
-    of the course.  For purposes of informal discussions, it is
-    helpful to have a lightweight notation that makes them easy to
-    read and write.  _Inference rules_ are one such notation.  (We'll
-    use [ev] for the name of this property, since [even] is already
-    used.)
-
-                              ------------             (ev_0)
-                                 ev 0
-
-                                 ev n
-                            ----------------          (ev_SS)
-                             ev (S (S n))
-*)
-
-(** Each of the textual rules that we started with is
-    reformatted here as an inference rule; the intended reading is
-    that, if the _premises_ above the line all hold, then the
-    _conclusion_ below the line follows.  For example, the rule
-    [ev_SS] says that, if [n] satisfies [ev], then [S (S n)] also
-    does.  If a rule has no premises above the line, then its
-    conclusion holds unconditionally.
-
-    We can represent a proof using these rules by combining rule
-    applications into a _proof tree_. Here's how we might transcribe
-    the above proof that [4] is even:
-
-                             --------  (ev_0)
-                              ev 0
-                             -------- (ev_SS)
-                              ev 2
-                             -------- (ev_SS)
-                              ev 4
-*)
-
-(* ================================================================= *)
-(** ** Inductive Definition of Evenness *)
-
-(** Putting all of this together, we can translate the definition of
-    evenness into a formal Coq definition using an [Inductive]
-    declaration, where each constructor corresponds to an inference
-    rule: *)
-
-
-Inductive my_nat : Type := 
-  | my_O: my_nat
-  | my_S (n:nat)  : my_nat.
-
-Inductive my_list (X:Type) : Type :=
-  | Nil : my_list X
-  | Cons: X -> my_list X -> my_list X.
-
-Check my_list.
-
-Inductive ev : nat -> Prop := 
-  | ev_0: ev 0
-  | ev_SS: forall (n:nat), ev n -> ev (S (S n)).
-
-
-Check ev_0.
-
-Check ev_SS.
-
-Definition nat_add2 (x:nat) : nat := x+2.
-
-Check nat_add2.
-
-(*
-   ev_SS: (n : nat) -> ev n -> ev (S (S n))
-
-   (ev_SS 4) : ev 4 -> ev (S (S 4))
-*)
-
-
-
-Theorem zero_is_even: ev 0.
-Proof.
-  apply ev_0.
-Qed.
-
-Theorem four_is_even: ev 4.
-Proof. apply ev_SS. apply ev_SS. apply ev_0. Qed.
-
-Print nat_ind. 
-
-Print ev_ind.
-
-
-
-
-    
-(* ################################################################# *)
-(** * Using Evidence in Proofs *)
-
-(** Besides _constructing_ evidence that numbers are even, we can also
-    _destruct_ such evidence, which amounts to reasoning about how it
-    could have been built.
-
-    Introducing [ev] with an [Inductive] declaration tells Coq not
-    only that the constructors [ev_0] and [ev_SS] are valid ways to
-    build evidence that some number is [ev], but also that these two
-    constructors are the _only_ ways to build evidence that numbers
-    are [ev]. *)
-
-(** In other words, if someone gives us evidence [E] for the assertion
-    [ev n], then we know that [E] must be one of two things:
-
-      - [E] is [ev_0] (and [n] is [O]), or
-      - [E] is [ev_SS n' E'] (and [n] is [S (S n')], where [E'] is
-        evidence for [ev n']). *)
-
-(** This suggests that it should be possible to analyze a
-    hypothesis of the form [ev n] much as we do inductively defined
-    data structures; in particular, it should be possible to argue by
-    _induction_ and _case analysis_ on such evidence.  Let's look at a
-    few examples to see what this means in practice. *)
-
-(* ================================================================= *)
-(** ** Inversion on Evidence *)
-
-(** Suppose we are proving some fact involving a number [n], and
-    we are given [ev n] as a hypothesis.  We already know how to
-    perform case analysis on [n] using [destruct] or [induction],
-    generating separate subgoals for the case where [n = O] and the
-    case where [n = S n'] for some [n'].  But for some proofs we may
-    instead want to analyze the evidence for [ev n] _directly_. As
-    a tool, we can prove our characterization of evidence for
-    [ev n], using [destruct]. *)
-
-Theorem ev_inversion :
-  forall (n : nat), ev n ->
-    (n = 0) \/ (exists n', n = S (S n') /\ ev n').
-Proof.
-  intros n H.
-  destruct H.
-  + left. reflexivity.
-  + right. exists n. split.
-   - reflexivity.
-   - assumption.
-Qed.
-
-
-Theorem ev_double :
-  forall (n: nat), ev n -> ev (double n).
-Proof.
-  intros n H.
-  induction H as [| n' Hn' IHn'].
-  + simpl. apply ev_0.
-  + simpl. apply ev_SS. apply ev_SS. assumption.
-Qed.   
+(** Look again at the formal definition of the [ev] property.  *)
 
 Print ev.
-
-
-Definition law_of_excluded_middle: Prop := forall (P : Prop), P \/ ~P.
-
-(*
-Theorem lem: law_of_excluded_middle.
-Proof.
-  unfold law_of_excluded_middle.
-  intros.
-*)
-
-(**
-Theorem p_q_rational: Exist irrational numbers P and Q, s.t P^Q is a rational number. 
-Proof. 
-    Consider R = (√2)^(√2).
-    Two cases:
-    * Case 1: R is rational. 
-       P = Q = √2. Done. 
-    * Case 2: R is irrational.
-      Consider R^√2 = (√2)^(√2)^^√2 = (√2)^2  = 2.
-  Qed.
-*)
-
-
-(*
-
-compute_prime_factors: {y: nat} -> {x: list nat |
-                                      every x[i] is prime /\ 
-                                      y = Πx_i /\ x != []}
-
-
-Theorem prime_factors_exist: forall y:nat, exists l: list nat, 
-  ~(l = []) /\ every x[i] is prime /\ 
-                                      y = Πx_i /\ x != []}
-
-*)
-
-(*
-  Algorithms are computational content of proofs.
-*)
-
-
-
-
-
 (* ==>
   Inductive ev : nat -> Prop :=
     | ev_0 : ev 0
@@ -286,7 +65,10 @@ Theorem prime_factors_exist: forall y:nat, exists l: list nat,
     it gives us a natural interpretation of the type of the [ev_SS]
     constructor: *)
 
-Check ev_SS.
+Check ev_SS
+  : forall n,
+    ev n ->
+    ev (S (S n)).
 
 (** This can be read "[ev_SS] is a constructor that takes two
     arguments -- a number [n] and evidence for the proposition [ev
@@ -294,52 +76,9 @@ Check ev_SS.
 
 (** Now let's look again at a previous proof involving [ev]. *)
 
-
-(**
-  (ev_SS 4) : ev 4 -> ev (S (S 4))
-*)
-
-(*
-n: nat
-*)
-
-
-Theorem my_list2: list nat.
-apply [ ]. Show Proof. Qed.
-
-
-Check ev_SS.
-
-Check 2:nat.
-
-
-Definition my_two: nat := 2.
-Check my_two: nat.
-Print my_two.
-
-(** * Proof Scripts *)
-(* In the following we writing a "script" to build
-   a proof object for ev 4 *)
-
-
-Definition ev_4_po: ev 4 :=
-  ev_SS 2 (ev_SS 0 ev_0).
-
 Theorem ev_4 : ev 4.
 Proof.
-  apply ev_SS.
-  Show Proof.
-  apply ev_SS. 
-  Show Proof.
-  apply ev_0. 
-  Show Proof.
-  Qed.
-
-Print ev_4_po.
-Print ev_4.
-
-Definition ev_4' : ev 4 := 
-  (ev_SS 2 (ev_SS 0 ev_0)).
+  apply ev_SS. apply ev_SS. apply ev_0. Qed.
 
 (** As with ordinary data values and functions, we can use the [Print]
     command to see the _proof object_ that results from this proof
@@ -349,15 +88,11 @@ Print ev_4.
 (* ===> ev_4 = ev_SS 2 (ev_SS 0 ev_0)
       : ev 4  *)
 
-(** All these different ways of building the proof lead to exactly the
-    same evidence being saved in the global environment. *)
-
-Print ev_4'.
-
 (** Indeed, we can also write down this proof object directly,
     without the need for a separate proof script: *)
 
-Check (ev_SS 2 (ev_SS 0 ev_0)).
+Check (ev_SS 2 (ev_SS 0 ev_0))
+  : ev 4.
 
 (** The expression [ev_SS 2 (ev_SS 0 ev_0)] can be thought of as
     instantiating the parameterized constructor [ev_SS] with the
@@ -374,14 +109,80 @@ Check (ev_SS 2 (ev_SS 0 ev_0)).
     [nil] can be thought of as a function from types to empty lists
     with elements of that type. *)
 
+(** We saw in the [Logic] chapter that we can use function
+    application syntax to instantiate universally quantified variables
+    in lemmas, as well as to supply evidence for assumptions that
+    these lemmas impose.  For instance: *)
 
-
-Theorem ev_4'': ev 4.
+Theorem ev_4': ev 4.
 Proof.
   apply (ev_SS 2 (ev_SS 0 ev_0)).
 Qed.
 
+(* ################################################################# *)
+(** * Proof Scripts *)
 
+(** The _proof objects_ we've been discussing lie at the core of how
+    Coq operates.  When Coq is following a proof script, what is
+    happening internally is that it is gradually constructing a proof
+    object -- a term whose type is the proposition being proved.  The
+    tactics between [Proof] and [Qed] tell it how to build up a term
+    of the required type.  To see this process in action, let's use
+    the [Show Proof] command to display the current state of the proof
+    tree at various points in the following tactic proof. *)
+
+Theorem ev_4'' : ev 4.
+Proof.
+  Show Proof.
+  apply ev_SS.
+  Show Proof.
+  apply ev_SS.
+  Show Proof.
+  apply ev_0.
+  Show Proof.
+Qed.
+
+(** At any given moment, Coq has constructed a term with a
+    "hole" (indicated by [?Goal] here, and so on), and it knows what
+    type of evidence is needed to fill this hole.
+
+    Each hole corresponds to a subgoal, and the proof is
+    finished when there are no more subgoals.  At this point, the
+    evidence we've built is stored in the global context under the name
+    given in the [Theorem] command. *)
+
+(** Tactic proofs are useful and convenient, but they are not
+    essential: in principle, we can always construct the required
+    evidence by hand, as shown above. Then we can use [Definition]
+    (rather than [Theorem]) to give a global name directly to this
+    evidence. *)
+
+Definition ev_4''' : ev 4 :=
+  ev_SS 2 (ev_SS 0 ev_0).
+
+(** All these different ways of building the proof lead to exactly the
+    same evidence being saved in the global environment. *)
+
+Print ev_4.
+(* ===> ev_4    =   ev_SS 2 (ev_SS 0 ev_0) : ev 4 *)
+Print ev_4'.
+(* ===> ev_4'   =   ev_SS 2 (ev_SS 0 ev_0) : ev 4 *)
+Print ev_4''.
+(* ===> ev_4''  =   ev_SS 2 (ev_SS 0 ev_0) : ev 4 *)
+Print ev_4'''.
+(* ===> ev_4''' =   ev_SS 2 (ev_SS 0 ev_0) : ev 4 *)
+
+(** **** Exercise: 2 stars, standard (eight_is_even)
+
+    Give a tactic proof and a proof object showing that [ev 8]. *)
+
+Theorem ev_8 : ev 8.
+Proof.
+  (* FILL IN HERE *) Admitted.
+
+Definition ev_8' : ev 8
+  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+(** [] *)
 
 (* ################################################################# *)
 (** * Quantifiers, Implications, Functions *)
@@ -398,16 +199,6 @@ Qed.
 
 (** For example, consider this statement: *)
 
-From Coq Require Import Arith.
-
-
-Definition is_eveen : nat -> Datatypes.bool := 
-  fun x => x mod 2 =? 0.
-
-(*
-  (n:nat) -> ev n -> ev (4+n)
-*)
-
 Theorem ev_plus4 : forall n, ev n -> ev (4 + n).
 Proof.
   intros n H. simpl.
@@ -415,18 +206,6 @@ Proof.
   apply ev_SS.
   apply H.
 Qed.
-
-Definition interesting_fun (H: ev 4) : ev 8 :=
-    ev_plus4 4 H.
-
-Compute (interesting_fun (ev_SS 2 (ev_SS 0 ev_0))).
-
-Check ev_plus4.
-Print ev_plus4.
-
-Compute ev_plus4.
-
-Compute is_eveen.
 
 (** What is the proof object corresponding to [ev_plus4]?
 
@@ -436,7 +215,9 @@ Compute is_eveen.
 
     Here it is: *)
 
-Definition ev_plus4' : forall n, ev n -> ev (4 + n). Admitted.
+Definition ev_plus4' : forall n, ev n -> ev (4 + n) :=
+  fun (n : nat) => fun (H : ev n) =>
+    ev_SS (S (S n)) (ev_SS n H).
 
 (** Recall that [fun n => blah] means "the function that, given [n],
     yields [blah]," and that Coq treats [4 + n] and [S (S (S (S n)))]
@@ -446,7 +227,10 @@ Definition ev_plus4'' (n : nat) (H : ev n)
                     : ev (4 + n) :=
   ev_SS (S (S n)) (ev_SS n H).
 
-Check ev_plus4''.
+Check ev_plus4''
+  : forall n : nat,
+    ev n ->
+    ev (4 + n).
 
 (** When we view the proposition being proved by [ev_plus4] as a
     function type, one interesting point becomes apparent: The second
@@ -501,7 +285,11 @@ Definition ev_plus2'' : Prop :=
     Naturally, the answer is yes! *)
 
 Definition add1 : nat -> nat.
-Admitted.
+intro n.
+Show Proof.
+apply S.
+Show Proof.
+apply n. Defined.
 
 Print add1.
 (* ==>
@@ -525,10 +313,6 @@ Compute add1 2.
     does illustrate the uniformity and orthogonality of the basic
     ideas in Coq. *)
 
-
-
-
-
 (* ################################################################# *)
 (** * Logical Connectives as Inductive Types *)
 
@@ -551,7 +335,7 @@ Module Props.
 Module And.
 
 Inductive and (P Q : Prop) : Prop :=
-  | 
+  | conj : P -> Q -> and P Q.
 
 Arguments conj [P] [Q].
 
@@ -624,7 +408,8 @@ Definition conj_fact : forall P Q R, P /\ Q -> Q /\ R -> P /\ R
 Module Or.
 
 Inductive or (P Q : Prop) : Prop :=
-  
+  | or_introl : P -> or P Q
+  | or_intror : Q -> or P Q.
 
 Arguments or_introl [P] [Q].
 Arguments or_intror [P] [Q].
@@ -678,87 +463,10 @@ Definition or_commut' : forall P Q, P \/ Q -> Q \/ P
     witness [x] together with a proof that [x] satisfies the property
     [P]: *)
 
-Check (fun (n:nat) (H:ev n) => Nat.div n 2).
-
-(*
-  (n:nat) -> (H:evn n) -> nat
-*)
-
-Check forall (n :nat), ev n -> False.
-
-Check nat -> nat -> nat .
-
-Check fun (X:Type) (Y:Type) (f: X -> Y) (x:X) => f x.
-
-Definition odd(n:nat) := not (ev n).
-
-Theorem ev_lem: forall n, ev n -> odd (S n).
-Proof.
-  intros n H0.
-  induction n as [| n' IHn'].
-  + unfold odd; unfold not. intros H1; inversion H1.
-  + unfold odd; unfold not. intros H1. inversion H1.
-    apply IHn' in H2. unfold odd in H2; unfold not in H2.
-    apply H2. assumption.
-Qed. 
-
-
-Check ev_ind.
-
-Theorem lem_even_odd: forall n, ev n \/ odd n.
-Proof.
-  intros n. 
-  induction n as [| n' IHn'].
-  + left; apply ev_0.
-  + destruct IHn'.
-   - right. unfold odd; unfold not.
-     intros H1. apply ev_lem in H1. 
-     unfold odd in H1; unfold not in H1. apply H1. 
-     apply ev_SS. assumption.
-   - left. rename n' into n. induction n as [| n' IHn'].
-      * unfold odd in H; unfold not in H. exfalso. apply H. apply ev_0.
-      * apply ev_SS.  
-Qed.
-
-
-
-
-(*
-
- l = x::t
------------- [x_head]
-   x ∈ l
-
- l = h::t   x ∈ t
------------------- [x_tail]
-    x ∈ l
-
-*)
-
-(*
-
-l = x::t   y ∈ t
------------------
-     ord x y l 
-
-l = h::t    ord x y t     
-----------------------
-    ord x y l
-
-*)
-
-
-Inductive In {A : Type}: A -> list A -> Prop :=
- | x_head: forall (x:A)(l t: list A), (l = x::t) -> In x l
- | x_tail: forall (x h:A)(l t: list A), (l = h::t) -> In x t -> In x l.
- 
-
-Theorem silly: forall (n :nat), ev n -> False.
-
 Module Ex.
 
 Inductive ex {A : Type} (P : A -> Prop) : Prop :=
-  | 
+  | ex_intro : forall x : A, P x -> ex P.
 
 Notation "'exists' x , p" :=
   (ex (fun x => p))
@@ -850,4 +558,211 @@ Definition ex_falso_quodlibet' : forall P, False -> P
 
 End Props.
 
-Check (fun (n:nat) (H:ev n) => Nat.div n 2).
+(* ################################################################# *)
+(** * Equality *)
+
+(** Even Coq's equality relation is not built in.  We can define
+    it ourselves: *)
+
+Module MyEquality.
+
+Inductive eq {X:Type} : X -> X -> Prop :=
+  | eq_refl : forall x, eq x x.
+
+Notation "x == y" := (eq x y)
+                       (at level 70, no associativity)
+                     : type_scope.
+
+(** The way to think about this definition (which is just a slight
+    variant of the standard library's) is that, given a set [X], it
+    defines a _family_ of propositions "[x] is equal to [y]," indexed
+    by pairs of values ([x] and [y]) from [X].  There is just one way
+    of constructing evidence for members of this family: applying the
+    constructor [eq_refl] to a type [X] and a single value [x : X],
+    which yields evidence that [x] is equal to [x].
+
+    Other types of the form [eq x y] where [x] and [y] are not the
+    same are thus uninhabited. *)
+
+(** We can use [eq_refl] to construct evidence that, for example, [2 =
+    2].  Can we also use it to construct evidence that [1 + 1 = 2]?
+    Yes, we can.  Indeed, it is the very same piece of evidence!
+
+    The reason is that Coq treats as "the same" any two terms that are
+    _convertible_ according to a simple set of computation rules.
+
+    These rules, which are similar to those used by [Compute], include
+    evaluation of function application, inlining of definitions, and
+    simplification of [match]es.  *)
+
+Lemma four: 2 + 2 == 1 + 3.
+Proof.
+  apply eq_refl.
+Qed.
+
+(** The [reflexivity] tactic that we have used to prove
+    equalities up to now is essentially just shorthand for [apply
+    eq_refl].
+
+    In tactic-based proofs of equality, the conversion rules are
+    normally hidden in uses of [simpl] (either explicit or implicit in
+    other tactics such as [reflexivity]).
+
+    But you can see them directly at work in the following explicit
+    proof objects: *)
+
+Definition four' : 2 + 2 == 1 + 3 :=
+  eq_refl 4.
+
+Definition singleton : forall (X:Type) (x:X), []++[x] == x::[]  :=
+  fun (X:Type) (x:X) => eq_refl [x].
+
+(** **** Exercise: 2 stars, standard (equality__leibniz_equality)
+
+    The inductive definition of equality implies _Leibniz equality_:
+    what we mean when we say "[x] and [y] are equal" is that every
+    property on [P] that is true of [x] is also true of [y].  *)
+
+Lemma equality__leibniz_equality : forall (X : Type) (x y: X),
+  x == y -> forall P:X->Prop, P x -> P y.
+Proof.
+(* FILL IN HERE *) Admitted.
+(** [] *)
+
+(** **** Exercise: 3 stars, standard, optional (leibniz_equality__equality)
+
+    Show that, in fact, the inductive definition of equality is
+    _equivalent_ to Leibniz equality.  Hint: the proof is quite short;
+    about all you need to do is to invent a clever property [P] to
+    instantiate the antecedent.*)
+
+Lemma leibniz_equality__equality : forall (X : Type) (x y: X),
+  (forall P:X->Prop, P x -> P y) -> x == y.
+Proof.
+(* FILL IN HERE *) Admitted.
+
+(** [] *)
+
+End MyEquality.
+
+(* ================================================================= *)
+(** ** Inversion, Again *)
+
+(** We've seen [inversion] used with both equality hypotheses and
+    hypotheses about inductively defined propositions.  Now that we've
+    seen that these are actually the same thing, we're in a position
+    to take a closer look at how [inversion] behaves.
+
+    In general, the [inversion] tactic...
+
+    - takes a hypothesis [H] whose type [P] is inductively defined,
+      and
+
+    - for each constructor [C] in [P]'s definition,
+
+      - generates a new subgoal in which we assume [H] was
+        built with [C],
+
+      - adds the arguments (premises) of [C] to the context of
+        the subgoal as extra hypotheses,
+
+      - matches the conclusion (result type) of [C] against the
+        current goal and calculates a set of equalities that must
+        hold in order for [C] to be applicable,
+
+      - adds these equalities to the context (and, for convenience,
+        rewrites them in the goal), and
+
+      - if the equalities are not satisfiable (e.g., they involve
+        things like [S n = O]), immediately solves the subgoal. *)
+
+(** _Example_: If we invert a hypothesis built with [or], there are
+    two constructors, so two subgoals get generated.  The
+    conclusion (result type) of the constructor ([P \/ Q]) doesn't
+    place any restrictions on the form of [P] or [Q], so we don't get
+    any extra equalities in the context of the subgoal. *)
+
+(** _Example_: If we invert a hypothesis built with [and], there is
+    only one constructor, so only one subgoal gets generated.  Again,
+    the conclusion (result type) of the constructor ([P /\ Q]) doesn't
+    place any restrictions on the form of [P] or [Q], so we don't get
+    any extra equalities in the context of the subgoal.  The
+    constructor does have two arguments, though, and these can be seen
+    in the context in the subgoal. *)
+
+(** _Example_: If we invert a hypothesis built with [eq], there is
+    again only one constructor, so only one subgoal gets generated.
+    Now, though, the form of the [eq_refl] constructor does give us
+    some extra information: it tells us that the two arguments to [eq]
+    must be the same!  The [inversion] tactic adds this fact to the
+    context. *)
+
+(* ################################################################# *)
+(** * The Coq Trusted Computing Base *)
+
+(** One issue that arises with any automated proof assistant is
+    "why trust it?": what if there is a bug in the implementation that
+    renders all its reasoning suspect?
+
+    While it is impossible to allay such concerns completely, the fact
+    that Coq is based on the Curry-Howard correspondence gives it a
+    strong foundation. Because propositions are just types and proofs
+    are just terms, checking that an alleged proof of a proposition is
+    valid just amounts to _type-checking_ the term.  Type checkers are
+    relatively small and straightforward programs, so the "trusted
+    computing base" for Coq -- the part of the code that we have to
+    believe is operating correctly -- is small too.
+
+    What must a typechecker do?  Its primary job is to make sure that
+    in each function application the expected and actual argument
+    types match, that the arms of a [match] expression are constructor
+    patterns belonging to the inductive type being matched over and
+    all arms of the [match] return the same type, and so on. *)
+
+(** There are a few additional wrinkles:
+
+    First, since Coq types can themselves be expressions, the checker
+    must normalize these (by using the computation rules) before
+    comparing them.
+
+    Second, the checker must make sure that [match] expressions are
+    _exhaustive_.  That is, there must be an arm for every possible
+    constructor.  To see why, consider the following alleged proof
+    object: *)
+
+Fail Definition or_bogus : forall P Q, P \/ Q -> P :=
+  fun (P Q : Prop) (A : P \/ Q) =>
+    match A with
+    | or_introl H => H
+    end.
+
+(** All the types here match correctly, but the [match] only
+    considers one of the possible constructors for [or].  Coq's
+    exhaustiveness check will reject this definition.
+
+    Third, the checker must make sure that each recursive function
+    terminates.  It does this using a syntactic check to make sure
+    that each recursive call is on a subexpression of the original
+    argument.  To see why this is essential, consider this alleged
+    proof: *)
+
+Fail Fixpoint infinite_loop {X : Type} (n : nat) {struct n} : X :=
+  infinite_loop n.
+Fail Definition falso : False := infinite_loop 0.
+
+(** Recursive function [infinite_loop] purports to return a
+    value of any type [X] that you would like.  (The [struct]
+    annotation on the function tells Coq that it recurses on argument
+    [n], not [X].)  Were Coq to allow [infinite_loop], then [falso]
+    would be definable, thus giving evidence for [False].  So Coq rejects
+    [infinite_loop]. *)
+
+(** Note that the soundness of Coq depends only on the
+    correctness of this typechecking engine, not on the tactic
+    machinery.  If there is a bug in a tactic implementation (and this
+    certainly does happen!), that tactic might construct an invalid
+    proof term.  But when you type [Qed], Coq checks the term for
+    validity from scratch.  Only theorems whose proofs pass the
+    type-checker can be used in further proof developments.  *)
+
+(* 2021-05-26 09:56 *)

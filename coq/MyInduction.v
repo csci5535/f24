@@ -1,5 +1,5 @@
 From LF Require Export Basics.
-
+Require Import Psatz.
 
 (*
  * Let's prove that n + 0 = n for all n:nat.
@@ -21,21 +21,69 @@ Check add_0_r.
 
 Theorem add_comm : forall n m : nat,
   n + m = m + n.
-Proof. intros n m. induction n as [|n' IHn'].
-- simpl. rewrite -> add_0_r. reflexivity.
-- simpl. rewrite -> IHn'. rewrite -> plus_n_Sm. reflexivity.
-Qed.
+Proof. Admitted. (* HW1 *)
 (* ################################################################# *)
 (** * Proofs Within Proofs *)
 
-Theorem mult_0_plus' : forall n m : nat,
-  (0 + n) * m = n * m.
+Lemma trivial_2: forall n:nat, 0 + (0 +n) = n.
 Proof.
-  intros n m.
-  assert (H: 0+n = n).
-  - simpl. reflexivity.
-  - rewrite -> H. reflexivity.
+  intros n.
+  assert(H: forall x:nat, 0+x = x).
+  {
+    intros. simpl. reflexivity.
+  }
+  Admitted.
+
+Theorem mult_0_plus' : forall n m k: nat,
+  ((0 + n) * m) *k   = m * (0+n) * k.
+Proof.
+  intros n m k. 
+  assert(H: 0+n = n).
+  {
+    simpl. reflexivity.
+  }
+  Admitted.  
+  
+(*
+  ((n + 1) + 1) = n + 2
+ *)  
+Theorem hamed: forall n:nat, n + 1 + 1 = n + 2.
+Proof.
+  intros n.
+  lia.
 Qed.
+
+Theorem hamed2: forall n m:nat, 
+  n < m ->
+  exists k:nat, m = n + k.
+Proof.
+  intros.
+  exists (m - n).
+  lia.
+Qed.
+
+
+Module ListPlayGround.
+
+Inductive NatList : Type := 
+  | Nil : NatList
+  | Cons: nat -> NatList -> NatList.
+
+Check Cons.
+Check NatList.
+
+End ListPlayGround.
+
+Module PolyListPlayGround.
+
+Inductive List (X:Type): Type := 
+  | Nil : List X
+  | Cons: X -> List X -> List X.
+
+Check List.
+
+
+
 
 (* ################################################################# *)
 (** * TODO for you: Please practice Induction.v *)

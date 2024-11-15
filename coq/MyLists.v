@@ -1,4 +1,6 @@
-From LF Require Export Induction.
+(**From LF Require Export Induction.*)
+
+
 
 (* ################################################################# *)
 (** * Lists of Numbers *)
@@ -10,6 +12,7 @@ Inductive natlist : Type :=
   | cons (n : nat) (l : natlist).
 
 Check nil.
+Check cons.
 
 Check cons 3 (cons 2 nil).
 

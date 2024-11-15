@@ -214,7 +214,11 @@ End MyIff.
 Theorem iff_sym : forall P Q : Prop,
   (P <-> Q) -> (Q <-> P).
 Proof.
-Admitted.
+  intros.
+  split.
+  + destruct H. assumption.
+  + destruct H. assumption.
+Qed. 
 
 (* ================================================================= *)
 (** ** Using Logical Equivalence for rewriting *)
@@ -256,9 +260,6 @@ Lemma mul_eq_0_ternary :
 Proof.
 Admitted.
 
-
-(*** CSCI 5535 -- 09/13 *)
-(** Embarassing stuff from the last class *)
 Example and_exercise2 :
   forall n m : nat, n + m = 0 -> n = 0 /\ m = 0.
 Proof. 
@@ -276,13 +277,14 @@ Qed.
 (** ** Existential Quantification *)
 
 Definition Even x := exists n : nat, x = double n.
+Check Even.
 
 Lemma four_is_even : Even 4.
 Proof.
   unfold Even.
-  exists 2.
-  reflexivity.
+  exists 2. reflexivity.
 Qed.
+  
 
 (** Conversely, if we have an existential hypothesis [exists x, P] in
     the context, we can destruct it to obtain a witness [x] and a
@@ -297,6 +299,7 @@ Proof.
   exists (2+x).
   simpl in H.
   simpl. assumption.
+  
 Qed.
 
 (* ################################################################# *)
@@ -331,41 +334,6 @@ Qed.
 (** Recursive definitions vs Inductive definitions of propositions *)
 
 
-
-(* ================================================================= *)
-(** ** Functional Extensionality *)
-
-Example function_equality_ex1 :
-  (fun x => 3 + x) = (fun x => (pred 4) + x).
-Proof. simpl. reflexivity. Qed.
-  
-  
-Example function_equality_ex2 :
-  (fun x => plus x 1) = (fun x => plus 1 x).
-Proof.
-
-Abort.
-  
-(** We can add functional extensionality to Coq's core using
-    the [Axiom] command. *)
-  
-Axiom functional_extensionality : forall {X Y: Type}
-                                    {f g : X -> Y},
-  (forall (x:X), f x = g x) -> f = g.
-  
-
-Theorem add_my_comm: forall (n m : nat), n+m = m+n.
-Admitted.
-
-Example function_equality_ex2 :
-  (fun x => plus x 1) = (fun x => plus 1 x).
-Proof.
-  apply functional_extensionality.
-  intros x. 
-  rewrite -> add_my_comm. reflexivity.
-Qed.
-
-Print Assumptions function_equality_ex2.
 (* ================================================================= *)
 (** ** Propositions vs. Booleans
 

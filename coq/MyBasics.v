@@ -1,7 +1,9 @@
 (* Functional Programming in Coq *)
 
+Require Import Unicode.Utf8.
+
 (* Days of the week example *)
-Inductive day : Type := 
+Inductive day: Type := 
   | monday
   | tuesday
   | wednesday
@@ -11,15 +13,17 @@ Inductive day : Type :=
   | sunday.
 
 (* next_weekday function *)
-Definition next_weekday (d:day) : day := 
+
+Definition next_weekday (d:day) : day :=
   match d with
-   | monday => tuesday
-   | tuesday => wednesday
-   | wednesday => thursday
-   | thursday => friday
-   | _  => monday
+  | monday => tuesday
+  | tuesday => wednesday
+  | wednesday => thursday
+  | thursday => friday
+  | _ => monday
   end.
 
+Compute (next_weekday monday).  
 
 (* Compute lets you perform computation and see the result *)
 
@@ -27,8 +31,11 @@ Compute (next_weekday monday).
 (* Example *)
 
 
-Example my_next_weekday_assertion: (next_weekday (next_weekday saturday)) = tuesday.
+Lemma my_random_assertion: (next_weekday (next_weekday saturday)) = tuesday.
 Proof. simpl. reflexivity. Qed.
+  
+Lemma trivial_1: (2 = 2).
+Proof. reflexivity. Qed.
 
 (* bool type *)
 Inductive bool : Type := 
@@ -41,6 +48,10 @@ Definition negb (b:bool) : bool :=
     | true => false
     | false => true
     end.
+
+Notation "¬ x" := (negb x).
+
+Compute (¬ true).
 
 (* orb definition *)
 Definition orb (b1:bool) (b2:bool) : bool := 
@@ -57,14 +68,17 @@ Proof. simpl. reflexivity. Qed.
 Definition andb (b1:bool) (b2:bool) : bool := 
   match b1 with
   | false => false
-  | true => b2
+  | true => (match b2 with
+             | true => true
+             | false => false
+            end)
   end.
 
+Notation "x ∧ y" := (andb x y).
+Notation "x ∨ y" := (orb x y).  
 
-Notation "x && y" := (andb x y).
-Notation "x || y" := (orb x y).  
+Compute (true ∧ false).
 
-Compute (true && false).
 
 (* Conditional expressions *)
 Definition orb' (b1:bool) (b2:bool) : bool := 
@@ -74,7 +88,12 @@ Definition orb' (b1:bool) (b2:bool) : bool :=
 
 (* Check *)
 
-Check true.
+Check true: bool.
+
+(*
+ * Theorem a:T.
+ * Proof. ... Qed.
+ *)
 
 Check (next_weekday tuesday).
 
@@ -85,7 +104,7 @@ Check bool.
 (* ================================================================= *)
 (** ** New Types from Old *)
 Inductive rgb : Type :=
-  | red
+  | red 
   | green
   | blue.
 
@@ -94,6 +113,17 @@ Inductive color : Type :=
   | black
   | white
   | primary (p:rgb).
+
+ (*
+  black : color
+ *) 
+Theorem rgb_equality_check: 
+  (primary red = primary red).
+Proof. simpl. reflexivity. Qed.
+
+(*
+  to_string: Int -> String
+*)
 
 (** The definitions of [rgb] and [color] say
     which constructor expressions belong to the sets [rgb] and
@@ -128,14 +158,34 @@ Check b : bool.
 Module NatPlayground.
 
 (* Define nat *)
+Check 0.
+Check 23.
+
+(* Denotational semantics *)
+(*  ⟦O⟧ = 0 *)
+(*  ⟦S n⟧ = 1 + ⟦n⟧ *)
+
 Inductive nat : Type := 
   | O
   | S (n:nat).
 
 Check S (S O).
 
+(*
+ * S (S O) == S (S O)
+ *  S O = S O
+ * O = O
+*)
+
 Check S.
 
+Definition pred (n:nat) : nat :=
+  match n with
+  | O => O
+  | S n' => n'
+  end.
+
+Compute (pred (S (S (S O)))).
 (** The definition of [nat] says how expressions in the set [nat] can be built:
 
     - the constructor expression [O] belongs to the set [nat];
@@ -145,78 +195,102 @@ Check S.
     - constructor expressions formed in these two ways are the only
       ones belonging to the set [nat]. *)
 
-(* Define pred function *)
-Fixpoint pred (n: nat) : nat := 
-  match n with
-  | O => O
-  | S p => p
-  end.
 
 End NatPlayground.
+
 (* We will end NatPlayground to use the built-in definitions of naturals *)
+Check O.
 Check (S O).
 Check 1=2.
 
+Compute (match (S (S O))  with 
+        | O => O
+        | S n' => n' end).
 (* Definitions of Comparison Functions *)
 
-Fixpoint eqb(n m : nat) : bool := 
-  match n with 
-  | O => match m with
+Fixpoint eqb( n m : nat): bool := 
+  match n with
+  | O => (match m with
           | O => true
-          | S _ => false
-         end
-  | S n' => match m with
-             | O => false
+          | _ => false
+          end)
+  | S n' => (match m with
+             | O => false 
              | S m' => eqb n' m'
-            end
+             end)
   end.
 
 Compute (eqb 1 2).
 
-Fixpoint leb (n m : nat) : bool := 
-  match n with 
-  | O => true
-  | S n' => match m with
-             | O => false
-             | S m' => leb n' m'
-            end
-  end.
+Notation "x == y" := (eqb x y) (at level 70) : nat_scope.
 
-Notation "x =? y" := (eqb x y) (at level 70) : nat_scope.
+Compute (1 == 2).
+
+Compute (1=2).
+
+Definition p1:Prop := forall (n:nat), n>0.
+Definition p2:Prop := forall (n:nat), n>2.
+Compute (p1 = p2).
+
+
+Fixpoint leb (n m : nat) : bool := 
+  match n with
+   | O => true
+   | S n' => (match m with 
+                | O => false
+                | S m' => leb n' m'
+              end)
+  end.  
 Notation "x <=? y" := (leb x y) (at level 70) : nat_scope.
 
+
+Fixpoint my_plus (n :nat)(m: nat) : nat :=
+  match n with
+   | O => m
+   | S n' => S (my_plus n' m)
+  end.
 
 (* What is the difference between x = y and x =? y? *)
 (* They are fundamentally different! *)
 
+(*
+  Goal: ∀x. P(x)
+  P(y), where y is fresh
+*)
+
 (* ################################################################# *)
 (** * Proof by Simplification *)
-Theorem simpl_theorem: forall n : nat, 0 + n = n.
+Theorem simpl_theorem: forall n : nat,  0+n = n.
 Proof. intros n'. reflexivity. Qed.
 
 (* ################################################################# *)
 (** * Proof by Rewriting *)
-Theorem plus_id_example : forall n m:nat,
+Theorem plus_id_example : forall n m k:nat,
   n = m ->
-  n + n = m + m.
-Proof. intros. rewrite <- H. reflexivity. Qed. 
+  m = k ->
+  n + n = k + m.
+Proof. 
+  intros n m k H1 H2.
+  rewrite -> H1.
+  rewrite -> H2.
+  reflexivity.
+Qed.
 
 Theorem plus_id_exercise : forall n m o : nat,
   n = m -> m = o -> n + m = m + o.
-Proof. intros n m o H1 H2. rewrite -> H1. rewrite <- H2. 
-reflexivity. Qed.
+Proof. Admitted.
 
 (* ################################################################# *)
 (** * Proof by Case Analysis *)
 Theorem plus_1_neq_0 : forall n : nat,
-  (leb n 5 = true) -> ((n + 1) =? 0 = false).
-Proof.
+  ((n + 1) == 0 = false).
+Proof. 
   intros n.
-  destruct n as [|n'].
-  - simpl. reflexivity.
-  - simpl. reflexivity.
+  destruct n as [|n'] eqn:H.
+  * simpl. reflexivity.
+  * simpl. reflexivity.
 Qed.
-
+   
 Theorem andb_commutative : forall b c, andb b c = andb c b.
 Proof.
   intros b c. destruct b eqn:Eb.
@@ -232,7 +306,14 @@ Qed.
 (** * Proof by Induction *)
 
 Theorem add_0_r : forall n:nat, n + 0 = n.
-Proof. Admitted.
+Proof. 
+  intros n.
+  induction n as [|n' IHn].
+  + simpl. reflexivity.
+  + simpl. rewrite -> IHn. reflexivity.
+Qed.  
+
+
 
 (* Making local assertions *)
 Theorem mult_0_plus' : forall n m : nat,
