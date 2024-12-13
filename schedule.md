@@ -180,7 +180,7 @@ permalink: /schedule/
     <td class="tg-0lax"> 
         <a href="https://cuboulder.zoom.us/rec/share/_SvehiXiEKUbfq2D_L1B-_LwoQCeYWVIR0b_tgcQAS6_e2n-Ay3lB6XjDggEysOy.f-tIXD8PsTyaMPCE">Lec 24 Zoom Recording</a>
         <br />
-        <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Stlc.html"></a>
+        <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Stlc.html">Lec 24 Reading</a>
         <br />
         <a href="https://cuboulder.zoom.us/rec/share/0KjJpEEmRe-Q7ip6uXK68ceG-LumGNQWGiOA-clGjnbq5IIotzfm_3YUvlPS_hYf.kuPsOxksciSO_uSs">Lec 25 Zoom Recording part 1 </a>
         <br />
