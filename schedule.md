@@ -167,8 +167,11 @@ permalink: /schedule/
     <td class="tg-0lax"> Small-Step Semantics</td>
     <td class="tg-0lax">
         <a href="https://cuboulder.zoom.us/rec/share/89Il4-tfToNSudFi5A4XV_z-FCXMtx0-JmJc4uxA722SHIdEHBMraj2JVT3dpWVa.vok31bPL70jIvz-P">Lec 22 Zoom Recording</a>
+        <br />
         <a href="https://cuboulder.zoom.us/rec/share/lCdcID-wKDpoVxMmTY6jqS6qpj4Koe8IkfSx_lqikqHo7V1FdYyFnHjFCUeL2RQ.d_sy32q81fvscuze">Lec 23 Zoom Recording</a>
+        <br />
         <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Smallstep.html">Lec 22-23 Reading</a>
+        <br />
     </td>
   </tr>
   <tr class="lecture">
@@ -176,10 +179,15 @@ permalink: /schedule/
     <td class="tg-0lax"> Type Systems, Simply Typed & Untyped Lambda Calculus</td>
     <td class="tg-0lax"> 
         <a href="https://cuboulder.zoom.us/rec/share/_SvehiXiEKUbfq2D_L1B-_LwoQCeYWVIR0b_tgcQAS6_e2n-Ay3lB6XjDggEysOy.f-tIXD8PsTyaMPCE">Lec 24 Zoom Recording</a>
+        <br />
         <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Stlc.html"></a>
+        <br />
         <a href="https://cuboulder.zoom.us/rec/share/0KjJpEEmRe-Q7ip6uXK68ceG-LumGNQWGiOA-clGjnbq5IIotzfm_3YUvlPS_hYf.kuPsOxksciSO_uSs">Lec 25 Zoom Recording part 1 </a>
+        <br />
         <a href="https://cuboulder.zoom.us/rec/share/I3euQrEVKqP0pRXzKR2yU9qMLU3qpEE5o7puQFlVYbXDhjwjzTF10Ji66NCjgt8q.DM2UT_ajmohSpS2n">Lec 25 Zoom Recording part 2 </a>
+        <br />
         <a href="../lectures/utlc.pdf">Lec 25 Class Notes</a>
+        <br />
     </td>
   </tr>
   <!--
