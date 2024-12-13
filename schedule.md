@@ -149,14 +149,40 @@ permalink: /schedule/
         <a href="https://cuboulder.zoom.us/rec/share/4ZZZOLt4XsrRMW8gicTqaNWpEZajVxxTNNU5TOT-FQ2FrHI5jXzIRaz_VRwcQFRh.FpgpKjT0XiM2cf2u">Lec 19 Zoom Recording</a>
         <br />
         <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Hoare.html">Lec 17-19 Reading</a>
+        <br />
+        <a href="https://cuboulder.zoom.us/rec/share/R6krFS1cbu5FgWxL1R17K_WDHJfHpVpe4TABb2HA1IhHYAH1Cy_MDon6AsdsgAmA.KHAMz9Z8YE3LV_Pe">Lec
+        20 Zoom Recording</a>
+        <br />
+        <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Hoare2.html">Lec 20-21 Reading</a>
+        <br />
+        <a href="https://cuboulder.zoom.us/rec/share/6hO84DAdTvWVIK4YlWdoOlAZF-nYkCQ9abNzFsyiZbmf24crQfd6H6ieQC8qzDte.9q_Zvh7wYaPN628e">Lec
+        21 Zoom Recording</a>
+        <br />
+        <a href="http://adam.chlipala.net/cpdt/html/Cpdt.Match.html">Lec 21 Reading</a>
+        <br />
     </td>
-
   </tr>
   <tr class="lecture">
     <td class="tg-baqh">6</td>
-    <td class="tg-0lax"> Type Systems, Simply Typed Lambda Calculus (STLC)</td>
-    <td class="tg-0lax"> </td>
+    <td class="tg-0lax"> Small-Step Semantics</td>
+    <td class="tg-0lax">
+        <a href="https://cuboulder.zoom.us/rec/share/89Il4-tfToNSudFi5A4XV_z-FCXMtx0-JmJc4uxA722SHIdEHBMraj2JVT3dpWVa.vok31bPL70jIvz-P">Lec 22 Zoom Recording</a>
+        <a href="https://cuboulder.zoom.us/rec/share/lCdcID-wKDpoVxMmTY6jqS6qpj4Koe8IkfSx_lqikqHo7V1FdYyFnHjFCUeL2RQ.d_sy32q81fvscuze">Lec 23 Zoom Recording</a>
+        <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Smallstep.html">Lec 22-23 Reading</a>
+    </td>
   </tr>
+  <tr class="lecture">
+    <td class="tg-baqh">7</td>
+    <td class="tg-0lax"> Type Systems, Simply Typed & Untyped Lambda Calculus</td>
+    <td class="tg-0lax"> 
+        <a href="https://cuboulder.zoom.us/rec/share/_SvehiXiEKUbfq2D_L1B-_LwoQCeYWVIR0b_tgcQAS6_e2n-Ay3lB6XjDggEysOy.f-tIXD8PsTyaMPCE">Lec 24 Zoom Recording</a>
+        <a href="https://softwarefoundations.cis.upenn.edu/plf-current/Stlc.html"></a>
+        <a href="https://cuboulder.zoom.us/rec/share/0KjJpEEmRe-Q7ip6uXK68ceG-LumGNQWGiOA-clGjnbq5IIotzfm_3YUvlPS_hYf.kuPsOxksciSO_uSs">Lec 25 Zoom Recording part 1 </a>
+        <a href="https://cuboulder.zoom.us/rec/share/I3euQrEVKqP0pRXzKR2yU9qMLU3qpEE5o7puQFlVYbXDhjwjzTF10Ji66NCjgt8q.DM2UT_ajmohSpS2n">Lec 25 Zoom Recording part 2 </a>
+        <a href="../lectures/utlc.pdf">Lec 25 Class Notes</a>
+    </td>
+  </tr>
+  <!--
   <tr class="lecture">
     <td class="tg-baqh">7</td>
     <td class="tg-0lax"> Properties of STLC, Extensions to STLC</td>
@@ -176,5 +202,6 @@ permalink: /schedule/
     </td>
     <td class="tg-0lax"></td>
   </tr>
+  -->
 </tbody>
 </table>
